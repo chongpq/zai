@@ -13,7 +13,7 @@ Assuming you are executing on a POSIX box, Windows machines are very similar.
 ## Assumptions
 * Assume wind speed is measured in km/h
 * Assume returning decimal number is ok. This became necessary for conversion of m/s to km/h and also because certain providers return decimal numbers too.
-* ```The service can hard-code Melbourne as a city.``` It has been coded it so it could potentially use the request params, however using the request params would introduce lots of requirements to validate that input and there is the underlying question of getting the country in order to process the request.
+* ```The service can hard-code Melbourne as a city.``` It has been coded so it could potentially use the request params, however using the request params would introduce lots of requirements to validate that input and there is the underlying question of getting the country in order to process the request.
 
 ## Design
 This is designed as a single GET endpoint which is the WeatherController.
