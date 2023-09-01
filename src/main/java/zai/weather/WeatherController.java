@@ -18,7 +18,7 @@ public class WeatherController {
 
     public static final String CITY = "melbourne";
     public static final String COUNTRY = "AU";
-    Logger logger = LoggerFactory.getLogger(WeatherController.class);
+    private Logger logger = LoggerFactory.getLogger(WeatherController.class);
     private CachedProvider cachedProvider;
     private WeatherStackClient primaryProvider;
     private OpenWeatherMapClient secondaryProvider;

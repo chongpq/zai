@@ -14,7 +14,7 @@ import zai.weather.domain.WeatherResult;
 @Component
 public class CachedProvider implements Provider {
 
-    Logger logger = LoggerFactory.getLogger(CachedProvider.class);
+    private Logger logger = LoggerFactory.getLogger(CachedProvider.class);
     Weather weather;
     LocalTime time;
 

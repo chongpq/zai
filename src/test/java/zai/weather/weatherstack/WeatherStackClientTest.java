@@ -24,10 +24,10 @@ public class WeatherStackClientTest {
     WeatherStackClient weatherStackClient;
 
     @Autowired
-    private MockRestServiceServer server;
+    MockRestServiceServer server;
 
     @Autowired
-    private ObjectMapper objectMapper;
+    ObjectMapper objectMapper;
 
     @Test
     void testNullReturnFromRestTemplate() {
