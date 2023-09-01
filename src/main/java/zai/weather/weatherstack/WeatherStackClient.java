@@ -35,7 +35,7 @@ public class WeatherStackClient implements Provider {
 				WeatherStackResponse.class);
 			return new WeatherResult(new Weather(wr.current().wind_speed(), wr.current().temperature()), null);
 		} catch (RestClientException | NullPointerException e) {
-			logger.warn("Exception occured. Putting exception message into error message.", e);
+			logger.warn("Exception occured - Putting exception message into error message.", e);
 			return new WeatherResult(null, new Error(e.getMessage()));
 		}
 	}

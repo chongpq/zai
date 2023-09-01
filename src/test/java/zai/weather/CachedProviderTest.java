@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.time.LocalTime;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,6 +19,7 @@ public class CachedProviderTest {
     @BeforeEach
     void setup() {
         cachedProvider = new CachedProvider();
+        cachedProvider.cachingIntervalInSec = 1;
     }
 
     @Test
@@ -45,12 +45,12 @@ public class CachedProviderTest {
         assertNull(c.error());
         assertEquals(w, c.weather());
 
-        TimeUnit.SECONDS.sleep(1);
+        Thread.sleep(200);
         c = cachedProvider.getWeather(WeatherController.CITY, WeatherController.COUNTRY);
         assertNull(c.error());
         assertEquals(w, c.weather());
 
-        TimeUnit.SECONDS.sleep(3);
+        Thread.sleep(1800);
         c = cachedProvider.getWeather(WeatherController.CITY, WeatherController.COUNTRY);
         assertEquals("Stale", c.error().message());
     }

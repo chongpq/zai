@@ -35,7 +35,7 @@ public class OpenWeatherMapClient implements Provider {
             Double kmPerHour = or.wind().speed() * 3.6;
             return new WeatherResult(new Weather(kmPerHour, or.main().temp()), null);
         } catch(RestClientException | NullPointerException e) {
-			logger.warn("Exception occured. Putting exception message into error message.", e);
+			logger.warn("Exception occured - Putting exception message into error message.", e);
             return new WeatherResult(null, new Error(e.getMessage()));
         }
     }

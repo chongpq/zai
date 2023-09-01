@@ -32,23 +32,35 @@ public class WeatherController {
     @GetMapping("/v1/weather")
     public Weather weather(@RequestParam(value = "city") String city) {
         //call cache
+        logger.info("Accessing cache");
         WeatherResult cached = cachedProvider.getWeather(CITY,COUNTRY);
         
         //set wr
-        WeatherResult wr = (cached.error() == null) ? cached : primaryProvider.getWeather(CITY, COUNTRY);
+        WeatherResult wr;
+        if (cached.error() == null) {
+            wr = cached;
+        } else {
+            logger.info("Accessing primary provider");
+            wr = primaryProvider.getWeather(CITY, COUNTRY);
+        }
         if (wr.error() != null) {
             //is error call secondary provider 
+            logger.info("Accessing secondary provider");
             wr = secondaryProvider.getWeather(CITY, COUNTRY);  
         }
         if (wr.error() != null) {
             //is error return what was in cache
             if (cached.weather() != null) {
                 //we have result to return
+                logger.info("Error - returning what we found in the cache");
                 wr = cached;
             } else {
+                logger.info("Error plus no cache data - returning a 503");
                 throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE);
             }
         }
+
+        logger.info("Caching data");
         cachedProvider.cache(wr.weather());
     
         return wr.weather();
