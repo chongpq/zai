@@ -22,6 +22,10 @@ The following 3 specs informed the body of the WeatherController
 * Weather results are fine to be cached for up to 3 seconds on the server in normal behaviour to prevent hitting weather providers.
 * Cached results should be served if all weather providers are down.
 
-Each provider is encapsulated in its own package: openweathermap, weatherstack. The interface Provider states what they need to provide to integrate with the weather app. In order to avoid multiple nested try catch blocks in the contoller we avoid using exceptions in the Provider interface.
+Each provider is encapsulated in its own package: openweathermap, weatherstack. The interface Provider states what they need to provide to integrate with the weather app. In order to avoid multiple nested try catch blocks in the contoller we avoided using exceptions in the Provider interface.
 
 The WeatherResult object in the domain package is similar to golang function returning mutliple results. WeatherResult could have used an ```Either``` object but in order to keep the dependencies low we just used standard Spring Boot.
+
+The use of Spring Boot is to satisfy this spec: Have scalability and reliability in mind when designing the solution. Spring Boot is a battle tested framework and has scaled and run reliably. 
+
+The only potential scaling bottleneck in the code is CachedProvider. Otherwise I reckon the scaling issues will lie with the providers and not with this code. CachedProvider is a custom solution, I'd prefer it if we used Redis for caching in production or at least a concurrent hashmap solution especially when we tackle multiple city/country in the app.
