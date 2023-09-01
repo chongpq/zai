@@ -50,7 +50,7 @@ public class CachedProviderTest {
         assertNull(c.error());
         assertEquals(w, c.weather());
 
-        Thread.sleep(1800);
+        Thread.sleep(900);
         c = cachedProvider.getWeather(WeatherController.CITY, WeatherController.COUNTRY);
         assertEquals("Stale", c.error().message());
     }

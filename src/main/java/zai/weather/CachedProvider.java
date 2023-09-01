@@ -26,7 +26,7 @@ public class CachedProvider implements Provider {
     @Override
     public WeatherResult getWeather(String city, String country) {
         if ((this.time == null) || 
-                (Duration.between(this.time, LocalTime.now()).getSeconds() > cachingIntervalInSec)) {
+                (Duration.between(this.time, LocalTime.now()).toMillis() > cachingIntervalInSec * 1000)) {
             logger.info("Cache miss");
             return new WeatherResult(weather, new Error("Stale"));
         } else {
