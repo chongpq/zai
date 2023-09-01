@@ -32,5 +32,5 @@ The use of Spring Boot is also to satisfy this spec: ```Have scalability and rel
 
 The only potential scaling bottleneck in the code is CachedProvider. Otherwise, scaling issues will lie with the providers and not with this code. CachedProvider is a custom solution, it is preferable to use Redis for caching in production or at least a concurrent hashmap solution especially to address future multiple city/country's in the app.
 
-##Test coverage
+## Test coverage
 The test coverage can be viewed in the zai folder at ```./build/reports/jacoco/test/html/index.html```
