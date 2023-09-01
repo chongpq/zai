@@ -23,6 +23,10 @@ public class WeatherController {
     private WeatherStackClient primaryProvider;
     private OpenWeatherMapClient secondaryProvider;
 
+    /*
+     *  This contructor signature is a comprimise because it was intended to be CachedProvider, Provider, Provider. However
+     *  testing made this signature neccessary. 
+     */
     public WeatherController(CachedProvider cachedProvider, WeatherStackClient weatherStackClient, OpenWeatherMapClient openWeatherMapClient) {
         this.cachedProvider = cachedProvider;
         this.primaryProvider = weatherStackClient;
